@@ -154,7 +154,7 @@ function findLongestWord(wordArray){
   var longestWord = wordArray[0];
 
   for (var i = 1; i < wordArray.length; i++) {
-      if (wordArray[i].length > wordArray[0].length) {
+      if (wordArray[i].length > longestWord.length) {
         longestWord = wordArray[i];
       }
     }
@@ -190,7 +190,8 @@ function arraysEqual(one, two) {
   return areEqual;
 }
 // console.assert(filterLongWords(["hello", "how", "are", "you", "doin"], 3) === ["hello", "doin"], "failed");
-console.assert(arraysEqual(filterLongWords(["hello", "how", "are", "you", "doin"], 3), ["hello", "doin"]), "failed");
+//console.assert(arraysEqual(filterLongWords(["hello", "how", "are", "you", "doin"], 3), ["hello", "doin"]) === true), "failed");
+console.assert(arraysEqual(filterLongWords(["hello", "how", "are", "you", "doin"], 3), ["hello", "doin"]) === true, "failed");
 console.log(filterLongWords(["hello", "how", "are", "you", "doin"], 3));
 
 // ---------------------
