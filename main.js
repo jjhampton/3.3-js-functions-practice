@@ -251,5 +251,41 @@ function objectCompare(x, y) {
   return true;
 }
 
-console.assert(objectCompare(charFreq("abbabcbdbabdbdbabababcbcbab"), {"a":7,"b":14,"c":3,"d":3}) === true, "failed");
+function deepEqual(x, y) {
+	if (((typeof x === "object") && (x !== null)) && ((typeof y === "object") && (y !== null))) {
+
+		var compareLength = function(x,y) {
+			lengthX = 0;
+			lengthY = 0;
+			for (var prop in x) {
+				lengthX++;
+			}
+			for (var prop in y) {
+				lengthY++;
+			}
+			return (lengthX === lengthY);
+		}
+
+		if (compareLength(x,y) === false) {
+			return false;
+		}
+
+		for (var prop in x) {
+			if (prop in y) {
+				if (deepEqual(x[prop], y[prop]) === false) {
+					return false;
+				}
+			}
+			else {
+				return false;
+			}
+		}
+		return true;
+	}
+return (x === y);
+}
+
+//
+// console.assert(objectCompare(charFreq("abbabcbdbabdbdbabababcbcbab"), {"a":7,"b":14,"c":3,"d":3}) === true, "failed");
+console.assert(deepEqual(charFreq("abbabcbdbabdbdbabababcbcbab"), {"a":7,"b":14,"c":3,"d":3}) === true, "failed");
 console.log(charFreq("abbabcbdbabdbdbabababcbcbab"));
